@@ -125,7 +125,6 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/cpu.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../project/Project.srcs/sources_1/new/cpu.v"/>
           <Attr Name="ImportTime" Val="1621071437"/>
           <Attr Name="UsedIn" Val="synthesis"/>
