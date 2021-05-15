@@ -21,7 +21,7 @@
 
 
 module Idecode32(input[31:0] Instruction,
-                 input[31:0] read_data,     //From memory
+                 input[31:0] read_data,     //From memory (if has memorio, from memio)
                  input[31:0] ALU_result,
                  input Jal,
                  input RegWrite,            //if write to reg
@@ -29,20 +29,20 @@ module Idecode32(input[31:0] Instruction,
                  input RegDst,              // if 1 then rd, if 0 then rs
                  input clock,
                  input reset,
-                 input[31:0] opcplus4, // from Ifetch32 link_addr?
+                 input[31:0] opcplus4,      // from Ifetch32 link_addr?
                  output[31:0] read_data_1,
                  output[31:0] read_data_2,
                  output[31:0] imme_extend);
 
 assign imme_extend = {{16{Instruction[15]}},Instruction[15:0]};
 
-reg[31:0] register[0:31]; 
+reg[31:0] register[0:31];
 assign read_data_1 = register[Instruction[25:21]];
 assign read_data_2 = register[Instruction[20:16]];
 
 //confirm which writeRegister should be write
 reg[4:0] writeR;
-always@(Instruction) 
+always@(Instruction)
 begin
     if (Jal)
     begin
@@ -55,11 +55,12 @@ begin
     end
 end
 
+integer i;
 always @(posedge clock,posedge reset)
 begin
     if (reset)
     begin
-        for(integer i = 0;i<32;i = i+1)
+        for(i = 0;i<32;i = i+1)
         begin
             register[i] <= 0; //if don't initial like this, it will be WA
         end
