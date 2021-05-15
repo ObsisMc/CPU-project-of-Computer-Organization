@@ -142,7 +142,7 @@ module cpu(input clk,
     .ALU_Result(ALU_result),
     .Addr_Result(ALU_result)
     );
-
+    
     //input of memory
     wire[31:0] addr_out;    //from memio
     wire[31:0] write_data;  //from memio
@@ -154,14 +154,15 @@ module cpu(input clk,
     .write_data(write_data),
     .read_data(read_data)   //output: to memroio
     );
-
+    
     //input
-    wire[15:0] io;    
+    wire[15:0] iodata;
+    wire[15:0] switchrdata; //data from switchio
     //output of memorio
     wire LEDCtrl; // LED Chip Select
     wire SwitchCtrl; // Switch Chip Select
-
-    assign io = switch[15:0];
+    
+    assign iodata = switchrdata;
     MemOrIO memio(
     .mRead(MemRead),    // read memory, from control32
     .mWrite(MemWrite),  // write memory, from control32
@@ -169,13 +170,33 @@ module cpu(input clk,
     .ioWrite(IOWrite),  // write IO, from control32
     .addr_in(ALU_result),   //from alu
     .m_rdata(read_data),    //from memory
-    .io_rdata(io),    //from io hardware, switch or something
+    .io_rdata(iodata),    //data read from hardware, switch or something
     .r_rdata(read_data_2), // data read from idecode32(register file)(read_data_2)!!!!!!!!!?
     .addr_out(addr_out),    //output and follows are they
     .r_wdata(r_wdata),
-    .write_data(write_data),
+    .write_data(write_data),    //io_wdata
     .LEDCtrl(LEDCtrl),
     .SwitchCtrl(SwitchCtrl)
+    );
+    
+    LedIO ledoutput(
+    .led_clk(clk),
+    .ledrst(rst),
+    .ledwrite(IOWrite),   //from controller(IOWrite)?????
+    .ledcs(LEDCtrl),
+    .ledaddr(addr_out[1:0]), //??????????????  from memorio?????
+    .ledwdata(write_data[15:0]),    //from memio(id_rdata)??
+    .ledout(led[23:0])
+    );
+
+    SwitchIO switchinput(
+        .switclk(clk),
+        .switrst(rst),
+        .switchcs(SwitchCtrl),
+        .switchaddr(addr_out[1:0]), //?????????????????
+        .switchread(IORead),  //from controller(IORead)?????
+        .switchrdata(switchrdata),
+        .switch_i(switch[23:0])
     );
 endmodule
     
