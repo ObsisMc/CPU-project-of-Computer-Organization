@@ -140,7 +140,7 @@ module cpu(input clk,
     .Jr(Jr),
     .Zero(Zero),
     .ALU_Result(ALU_result),
-    .Addr_Result(ALU_result)
+    .Addr_Result(Addr_result)
     );
     
     //input of memory
