@@ -25,6 +25,7 @@ module cpu(input clk,
            input[23:0] switch,
            output[23:0] led);
     
+
     //output of ifetch
     wire[31:0] Instruction;
     wire[31:0] branch_base_addr;    // from ifetch to ALU(PC_plus_4)
