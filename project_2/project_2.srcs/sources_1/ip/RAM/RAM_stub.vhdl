@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
--- Date        : Sat May 15 17:45:27 2021
+-- Date        : Sat May 15 23:57:47 2021
 -- Host        : DESKTOP-JT5I3PO running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               c:/Users/Bill/Desktop/project/Project.srcs/sources_1/ip/RAM/RAM_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top RAM -prefix
+--               RAM_ RAM_stub.vhdl
 -- Design      : RAM
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a100tfgg484-1
