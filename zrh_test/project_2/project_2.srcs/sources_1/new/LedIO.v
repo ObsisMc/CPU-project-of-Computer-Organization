@@ -17,13 +17,13 @@ module LedIO(led_clk, ledrst, ledwrite, ledcs, ledaddr,ledwdata, ledout);
             ledout <= 24'h000000;
         end
 		else if(ledcs && ledwrite) begin
-			// if(ledaddr == 2'b00)
-			// 	ledout[23:0] <= { ledout[23:16], ledwdata[15:0] };
-			// else if(ledaddr == 2'b10 )
-			// 	ledout[23:0] <= { ledwdata[7:0], ledout[15:0] };
-			// else
-			// 	ledout <= ledout;
-            ledout[23:0] <= { ledout[23:16], ledwdata[15:0] };
+			if(ledaddr == 2'b00)
+				ledout[23:0] <= { ledout[23:16], ledwdata[15:0] };
+			else if(ledaddr == 2'b10 )
+				ledout[23:0] <= { ledwdata[7:0], ledout[15:0] };
+			else
+				ledout <= ledout;
+            // ledout[23:0] <= { ledout[23:16], ledwdata[15:0] };
         end
 		else begin
             ledout <= ledout;

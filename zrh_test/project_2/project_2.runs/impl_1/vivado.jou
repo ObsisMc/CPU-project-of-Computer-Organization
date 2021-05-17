@@ -2,8 +2,8 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Sun May 16 17:33:17 2021
-# Process ID: 15508
+# Start of session at: Mon May 17 20:52:42 2021
+# Process ID: 4716
 # Current directory: E:/Gitrepo/CPU-project-of-Computer-Organization/zrh_test/project_2/project_2.runs/impl_1
 # Command line: vivado.exe -log cpu.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source cpu.tcl -notrace
 # Log file: E:/Gitrepo/CPU-project-of-Computer-Organization/zrh_test/project_2/project_2.runs/impl_1/cpu.vdi

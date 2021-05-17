@@ -41,6 +41,8 @@ read_verilog -library xil_defaultlib {
   E:/Gitrepo/CPU-project-of-Computer-Organization/zrh_test/project_2/project_2.srcs/sources_1/new/controller.v
   E:/Gitrepo/CPU-project-of-Computer-Organization/zrh_test/project_2/project_2.srcs/sources_1/new/dmemory32.v
   E:/Gitrepo/CPU-project-of-Computer-Organization/zrh_test/project_2/project_2.srcs/sources_1/new/idcoder32.v
+  E:/Gitrepo/CPU-project-of-Computer-Organization/zrh_test/project_2/project_2.srcs/sources_1/new/ioread.v
+  E:/Gitrepo/CPU-project-of-Computer-Organization/zrh_test/project_2/project_2.srcs/sources_1/new/slowclk.v
   E:/Gitrepo/CPU-project-of-Computer-Organization/zrh_test/project_2/project_2.srcs/sources_1/new/cpu.v
 }
 read_ip -quiet E:/Gitrepo/CPU-project-of-Computer-Organization/zrh_test/project_2/project_2.srcs/sources_1/ip/prgrom/prgrom.xci

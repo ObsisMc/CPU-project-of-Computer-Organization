@@ -20,12 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module cpu(input clk,
+module cpu(input clock,
            input rst,
            input[23:0] switch,
            output[23:0] led);
     
-
+    wire clk;
+    // assign clk = clock;
+    slowclk sc(.clk(clock),
+    .reset(rst),
+    .clkout1(clk));
+    
     //output of ifetch
     wire[31:0] Instruction;
     wire[31:0] branch_base_addr;    // from ifetch to ALU(PC_plus_4)
@@ -163,7 +168,7 @@ module cpu(input clk,
     wire LEDCtrl; // LED Chip Select
     wire SwitchCtrl; // Switch Chip Select
     
-    assign iodata = switchrdata;
+    // assign iodata = switchrdata;
     MemOrIO memio(
     .mRead(MemRead),    // read memory, from control32
     .mWrite(MemWrite),  // write memory, from control32
@@ -180,6 +185,21 @@ module cpu(input clk,
     .SwitchCtrl(SwitchCtrl)
     );
     
+    ioread multiioread(
+    .reset(rst),.ior(IORead),.switchctrl(SwitchCtrl),
+    .ioread_data(iodata),.ioread_data_switch(switchrdata)
+    );
+    
+    SwitchIO switchinput(
+    .switclk(clk),
+    .switrst(rst),
+    .switchcs(SwitchCtrl),
+    .switchaddr(addr_out[1:0]), //?????????????????
+    .switchread(IORead),  //from controller(IORead)?????
+    .switchrdata(switchrdata), //output
+    .switch_i(switch[23:0])
+    );
+    
     LedIO ledoutput(
     .led_clk(clk),
     .ledrst(rst),
@@ -189,15 +209,9 @@ module cpu(input clk,
     .ledwdata(write_data[15:0]),    //from memio(id_rdata)??
     .ledout(led[23:0])
     );
-
-    SwitchIO switchinput(
-        .switclk(clk),
-        .switrst(rst),
-        .switchcs(SwitchCtrl),
-        .switchaddr(addr_out[1:0]), //?????????????????
-        .switchread(IORead),  //from controller(IORead)?????
-        .switchrdata(switchrdata),
-        .switch_i(switch[23:0])
-    );
+    
+    
+    
+    
 endmodule
     

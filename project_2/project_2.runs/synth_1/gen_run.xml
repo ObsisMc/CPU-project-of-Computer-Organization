@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7a100tfgg484-1" LaunchTime="1621238762">
+  <File Type="PA-TCL" Name="cpu.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="cpu_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="cpu_reports.tcl"/>
+  <File Type="RDS-RDS" Name="cpu.vds"/>
+  <File Type="RDS-UTIL" Name="cpu_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="cpu_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="cpu.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="cpu_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="cpu_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/Executs32.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../project/Project.srcs/sources_1/new/Executs32.v"/>
+        <Attr Name="ImportTime" Val="1621050499"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/IFetch.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../project/Project.srcs/sources_1/new/IFetch.v"/>
+        <Attr Name="ImportTime" Val="1621050499"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/LedIO.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/MemOrIO.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../project/Project.srcs/sources_1/new/MemOrIO.v"/>
+        <Attr Name="ImportTime" Val="1621068802"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/SwitchIO.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/controller.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../project/Project.srcs/sources_1/new/controller.v"/>
+        <Attr Name="ImportTime" Val="1621050499"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/dmemory32.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../project/Project.srcs/sources_1/new/dmemory32.v"/>
+        <Attr Name="ImportTime" Val="1621050499"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/idcoder32.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../project/Project.srcs/sources_1/new/idcoder32.v"/>
+        <Attr Name="ImportTime" Val="1621050499"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/cpu.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../project/Project.srcs/sources_1/new/cpu.v"/>
+        <Attr Name="ImportTime" Val="1621071437"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/Chrome Download/prgmip32.coe">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="d:/Chrome Download/prgmip32.coe"/>
+        <Attr Name="ImportTime" Val="1621066188"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/Chrome Download/dmem32.coe">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="d:/Chrome Download/dmem32.coe"/>
+        <Attr Name="ImportTime" Val="1620249512"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="cpu"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="prgrom"/>
+  <BlockFileSet Type="BlockSrcs" Name="RAM"/>
+</GenRun>

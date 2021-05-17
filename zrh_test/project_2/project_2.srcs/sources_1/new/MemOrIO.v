@@ -35,7 +35,7 @@ module MemOrIO( mRead, mWrite, ioRead, ioWrite,addr_in, addr_out, m_rdata, io_rd
     output[31:0] r_wdata; // data to idecode32(register file)
     
     input[31:0] r_rdata; // data read from idecode32(register file)
-    output reg[31:0] write_data; // data to memory or I/O£¨m_wdata, io_wdata£©
+    output reg[31:0] write_data; // data to memory or I/Oï¿½ï¿½m_wdata, io_wdataï¿½ï¿½
     output LEDCtrl; // LED Chip Select
     output SwitchCtrl; // Switch Chip Select
 
@@ -49,8 +49,8 @@ module MemOrIO( mRead, mWrite, ioRead, ioWrite,addr_in, addr_out, m_rdata, io_rd
     always @* begin
         if((mWrite==1)||(ioWrite==1))
 //wirte_data could go to either memory or IO. where is it from?
-            //write_data = (mWrite == 1 && ioWrite == 0)? r_rdata:({16'b0000_0000_0000_0000,r_rdata[15:0]});
-            write_data = r_rdata;
+            write_data = (mWrite == 1 && ioWrite == 0)? r_rdata:({16'b0000_0000_0000_0000,r_rdata[15:0]});
+            // write_data = r_rdata;
         else
             write_data = 32'hZZZZZZZZ;
     end
