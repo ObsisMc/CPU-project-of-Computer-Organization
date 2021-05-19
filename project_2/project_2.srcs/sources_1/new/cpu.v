@@ -20,10 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module cpu(input clk,
+module cpu(input clock,
            input rst,
            input[23:0] switch,
            output[23:0] led);
+
+    wire clk;
+    FracFrequency ff(.clk(clock),
+    .reset(rst),
+    .clkout(clk));
     
     //output of ifetch
     wire[31:0] Instruction;
@@ -109,7 +114,7 @@ module cpu(input clk,
     .Jal(Jal),
     .Branch(Branch),
     .nBranch(nBranch),
-    .RegDst(RegDst),
+    .RegDST(RegDst),
     .MemtoReg(MemtoReg),
     .RegWrite(RegWrite),
     .MemWrite(MemWrite),
@@ -162,7 +167,7 @@ module cpu(input clk,
     wire LEDCtrl; // LED Chip Select
     wire SwitchCtrl; // Switch Chip Select
     
-    assign iodata = switchrdata;
+
     MemOrIO memio(
     .mRead(MemRead),    // read memory, from control32
     .mWrite(MemWrite),  // write memory, from control32
@@ -178,6 +183,12 @@ module cpu(input clk,
     .LEDCtrl(LEDCtrl),
     .SwitchCtrl(SwitchCtrl)
     );
+
+    ioInterface ioin(.reset(rst),
+    .ior(IORead),
+    .switchctrl(SwitchCtrl),
+    .ioread_data(iodata),
+    .ioread_data_switch(switchrdata));
     
     LedIO ledoutput(
     .led_clk(clk),

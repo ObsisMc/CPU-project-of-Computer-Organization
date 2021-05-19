@@ -1,0 +1,19 @@
+0.6
+2017.4
+Dec 15 2017
+21:07:18
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.sim/sim_1/behav/xsim/glbl.v,1621078272,verilog,,,,glbl,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sim_1/new/CPU_tb.v,1621407141,verilog,,,,CPU_tb,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/ip/RAM/sim/RAM.v,1621408067,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/ip/prgrom/sim/prgrom.v,,RAM,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/ip/prgrom/sim/prgrom.v,1621408033,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/Executs32.v,,prgrom,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/Executs32.v,1621078272,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/FracFrequency.v,,Executs32,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/FracFrequency.v,1621406052,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/IFetch.v,,FracFrequency,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/IFetch.v,1621078272,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/LedIO.v,,Ifetc32,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/LedIO.v,1621084103,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/MemOrIO.v,,LedIO,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/MemOrIO.v,1621078272,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/SwitchIO.v,,MemOrIO,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/SwitchIO.v,1621405696,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/controller.v,,SwitchIO,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/controller.v,1621078272,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/cpu.v,,controller,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/cpu.v,1621407270,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/dmemory32.v,,cpu,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/dmemory32.v,1621078272,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/idcoder32.v,,dmemory32,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/idcoder32.v,1621082115,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/ioInterface.v,,Idecode32,,,,,,,,
+E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/ioInterface.v,1621406914,verilog,,E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sim_1/new/CPU_tb.v,,ioInterface,,,,,,,,
