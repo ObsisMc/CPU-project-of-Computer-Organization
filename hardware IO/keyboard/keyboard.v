@@ -24,6 +24,7 @@ module keyboard(input clk,
                 input rst,
                 input [3:0] row,              
                 output reg [3:0] col,
+                output[23:0] led,
                 output reg key_pressed_flag);
     //键盘
     //++++++++++++++++++++++++++++++++++++++
@@ -46,7 +47,7 @@ module keyboard(input clk,
     
     reg [5:0] current_state, next_state;
     
-    always @ (posedge key_clk, negedge rst)
+    always @ (posedge key_clk, posedge rst)
         if (!rst)
             current_state <= NO_KEY_PRESSED;
         else
@@ -101,7 +102,7 @@ module keyboard(input clk,
     
     
     reg [3:0] col_val, row_val;
-    always @ (posedge key_clk, negedge rst)
+    always @ (posedge key_clk, posedge rst)
         if (!rst)
         begin
             col              <= 4'h0;
@@ -144,8 +145,8 @@ module keyboard(input clk,
             endcase
     
     
-    reg [1:0] keyboard_val;//键盘值（未使用）
-    always @ (posedge key_clk, negedge rst)
+    reg [3:0] keyboard_val;     //键盘值,输出
+    always @ (posedge key_clk, posedge rst)
         if (!rst)
         begin
             keyboard_val = 2'b0;
@@ -156,20 +157,43 @@ module keyboard(input clk,
                 case ({col_val, row_val})
                     8'b1110_1110 :
                     begin
-                        keyboard_val = 2'b01;
+                        keyboard_val = 1;
                     end
                     8'b1110_0111 :
                     begin
                         keyboard_val = 0;
-                        
                     end
                     8'b1101_1110 :
                     begin
-                        keyboard_val = 2'b10;
+                        keyboard_val = 2;
                     end
                     8'b1011_1110 :
                     begin
-                        keyboard_val = 2'b11;
+                        keyboard_val = 3;
+                    end
+                    8'b1110_1101:
+                    begin
+                        keyboard_val = 4;
+                    end
+                    8'b1101_1101:
+                    begin
+                        keyboard_val = 5;
+                    end
+                    8'b1011_1101:
+                    begin
+                        keyboard_val = 6;
+                    end
+                    8'b1110_1011:
+                    begin
+                        keyboard_val = 7;
+                    end
+                    8'b1101_1011:
+                    begin
+                        keyboard_val = 8;
+                    end
+                    8'b1011_1011:
+                    begin
+                        keyboard_val = 9;
                     end
                     8'b0111_1110:
                     begin
@@ -181,7 +205,7 @@ module keyboard(input clk,
                     end
                     default:
                     begin
-                        keyboard_val = 2'b00;
+                        keyboard_val = 0;
                     end
                 endcase
             end
@@ -189,4 +213,6 @@ module keyboard(input clk,
             begin
                 keyboard_val = 2'b00;
             end
+        
+        assign led = keyboard_val;
 endmodule
