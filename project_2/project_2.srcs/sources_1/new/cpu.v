@@ -22,8 +22,10 @@
 
 module cpu(input clock,
            input rst,
+           input [3:0] row,
            input[23:0] switch,
-           output[23:0] led);
+           output[23:0] led,
+           output [3:0] col);
 
     wire clk;
     FracFrequency ff(.clk(clock),
@@ -179,7 +181,7 @@ module cpu(input clock,
     .r_rdata(read_data_2), // data read from idecode32(register file)(read_data_2)!!!!!!!!!?
     .addr_out(addr_out),    //output and follows are they
     .r_wdata(r_wdata),
-    .write_data(write_data),    //io_wdata
+    .write_data(write_data),    //io_wdata, output
     .LEDCtrl(LEDCtrl),
     .SwitchCtrl(SwitchCtrl)
     );
@@ -187,7 +189,7 @@ module cpu(input clock,
     ioInterface ioin(.reset(rst),
     .ior(IORead),
     .switchctrl(SwitchCtrl),
-    .ioread_data(iodata),
+    .ioread_data(iodata),   //output
     .ioread_data_switch(switchrdata));
     
     LedIO ledoutput(
@@ -200,14 +202,26 @@ module cpu(input clock,
     .ledout(led[23:0])
     );
 
+    wire[23:0] keybd_i;
+    wire key_pressed_flag;  //not used
+    keyboard kb(
+        .clk(clock),
+        .rst(reset),
+        .row(row),
+        .col(col),
+        .keybd_i(keybd_i),
+        .key_pressed_flag(key_pressed_flag)
+    );
+
     SwitchIO switchinput(
         .switclk(clk),
         .switrst(rst),
         .switchcs(SwitchCtrl),
         .switchaddr(addr_out[1:0]), //?????????????????
         .switchread(IORead),  //from controller(IORead)?????
-        .switchrdata(switchrdata),
-        .switch_i(switch[23:0])
+        .switchrdata(switchrdata), //output
+        .switch_i(switch[23:0]),
+        .keybd_i(keybd_i)
     );
 endmodule
     
