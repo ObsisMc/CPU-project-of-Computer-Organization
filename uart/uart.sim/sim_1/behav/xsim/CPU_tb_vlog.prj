@@ -1,0 +1,22 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../project_2.srcs/sources_1/ip/RAM/sim/RAM.v" \
+"../../../../project_2.srcs/sources_1/ip/prgrom/sim/prgrom.v" \
+"../../../../project_2.srcs/sources_1/new/Executs32.v" \
+"../../../../project_2.srcs/sources_1/new/FracFrequency.v" \
+"../../../../project_2.srcs/sources_1/new/IFetch.v" \
+"../../../../project_2.srcs/sources_1/new/LedIO.v" \
+"../../../../project_2.srcs/sources_1/new/MemOrIO.v" \
+"../../../../project_2.srcs/sources_1/new/SwitchIO.v" \
+"../../../../project_2.srcs/sources_1/new/controller.v" \
+"../../../../project_2.srcs/sources_1/new/cpu.v" \
+"../../../../project_2.srcs/sources_1/new/dmemory32.v" \
+"../../../../project_2.srcs/sources_1/new/idcoder32.v" \
+"../../../../project_2.srcs/sources_1/new/ioInterface.v" \
+"../../../../project_2.srcs/sim_1/new/CPU_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
