@@ -17,6 +17,7 @@ proc create_report { reportName command } {
   }
 }
 set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
 create_project -in_memory -part xc7a100tfgg484-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -46,7 +47,6 @@ read_verilog -library xil_defaultlib {
   E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/controller.v
   E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/dmemory32.v
   E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/idcoder32.v
-  E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/keyboard.v
   E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/cpu.v
 }
 read_ip -quiet E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/ip/prgrom/prgrom.xci

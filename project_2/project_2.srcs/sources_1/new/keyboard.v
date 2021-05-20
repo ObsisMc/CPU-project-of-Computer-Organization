@@ -252,7 +252,7 @@ module keyboard(input clk,
             else
             begin
                 // keyboard_val = 2'b00;
-                keybd_i_low <= 0;
+                // keybd_i_low <= 0;
             end
     assign keybd_i = {modeCtrl,keybd_i_low};
 endmodule
