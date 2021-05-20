@@ -12,7 +12,7 @@ module SwitchIO(switclk, switrst, switchread, switchcs,switchaddr, switchrdata, 
     input [23:0] keybd_i;
 
     reg[23:0] in;
-    always @(switch_i, keybd_i,posedge switrst)
+    always @(*)
     begin
         if(switrst)
             in <= 0;
@@ -26,6 +26,7 @@ module SwitchIO(switclk, switrst, switchread, switchcs,switchaddr, switchrdata, 
             begin
                 in <= switch_i;
             end
+            //  in <= keybd_i;
         end
     end
 

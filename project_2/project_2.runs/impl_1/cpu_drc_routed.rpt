@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-| Date         : Wed May 19 15:15:20 2021
+| Date         : Thu May 20 18:04:21 2021
 | Host         : DESKTOP-413QC96 running 64-bit major release  (build 9200)
 | Command      : report_drc -file cpu_drc_routed.rpt -pb cpu_drc_routed.pb -rpx cpu_drc_routed.rpx
 | Design       : cpu
@@ -62,7 +62,7 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net ifetch/register_reg[0][15]_5[0] is a gated clock net sourced by a combinational pin ifetch/ioread_data_reg[15]_i_1/O, cell ifetch/ioread_data_reg[15]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net kb/next_state_reg[5]_i_2_n_0 is a gated clock net sourced by a combinational pin kb/next_state_reg[5]_i_2/O, cell kb/next_state_reg[5]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 REQP-1839#1 Warning

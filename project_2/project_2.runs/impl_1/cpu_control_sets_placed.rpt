@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-| Date         : Wed May 19 15:14:42 2021
+| Date         : Thu May 20 18:03:40 2021
 | Host         : DESKTOP-413QC96 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file cpu_control_sets_placed.rpt
 | Design       : cpu
@@ -22,8 +22,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |    42 |
-| Unused register locations in slices containing registers |    29 |
+| Number of unique control sets                            |    48 |
+| Unused register locations in slices containing registers |    53 |
 +----------------------------------------------------------+-------+
 
 
@@ -33,64 +33,70 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               5 |            5 |
+| No           | No                    | No                     |              42 |           14 |
 | No           | No                    | Yes                    |               2 |            1 |
-| No           | Yes                   | No                     |              42 |           14 |
-| Yes          | No                    | No                     |              30 |            8 |
-| Yes          | No                    | Yes                    |            1064 |          493 |
-| Yes          | Yes                   | No                     |               4 |            2 |
+| No           | Yes                   | No                     |              26 |            9 |
+| Yes          | No                    | No                     |              46 |           14 |
+| Yes          | No                    | Yes                    |            1055 |          464 |
+| Yes          | Yes                   | No                     |               8 |            2 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 3. Detailed Control Set Information
 -----------------------------------
 
-+----------------------------------+---------------------------------+------------------+------------------+----------------+
-|           Clock Signal           |          Enable Signal          | Set/Reset Signal | Slice Load Count | Bel Load Count |
-+----------------------------------+---------------------------------+------------------+------------------+----------------+
-|  clock_IBUF_BUFG                 |                                 | rst_IBUF         |                1 |              2 |
-|  ff/xlnx_opt_                    |                                 |                  |                2 |              2 |
-| ~ff/xlnx_opt_                    |                                 |                  |                3 |              3 |
-| ~ff/xlnx_opt_                    | ifetch/PC[31]_i_1_n_0           | rst_IBUF         |                2 |              4 |
-|  ff/xlnx_opt_                    | ifetch/ledout_reg[23][1]        | rst_IBUF         |                2 |              8 |
-|  ifetch/register_reg[0][15]_5[0] |                                 | rst_IBUF         |                5 |             16 |
-|  ff/xlnx_opt_                    | ifetch/ledout_reg[23][0]        | rst_IBUF         |                5 |             16 |
-| ~ff/xlnx_opt_                    | ifetch/switchrdata_reg[0]_10[0] | rst_IBUF         |                4 |             16 |
-| ~ff/xlnx_opt_                    |                                 | rst_IBUF         |                9 |             26 |
-| ~ff/xlnx_opt_                    | ifetch/link_addr[29]_i_1_n_0    |                  |                8 |             30 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[16][31][0]  | rst_IBUF         |               10 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[18][31][0]  | rst_IBUF         |               14 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[19][31][0]  | rst_IBUF         |               10 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[10][31][0]  | rst_IBUF         |               11 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[23][31][0]  | rst_IBUF         |               18 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[25][31][0]  | rst_IBUF         |               11 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[12][31][0]  | rst_IBUF         |               12 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[1][31][0]   | rst_IBUF         |               18 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[20][31][0]  | rst_IBUF         |               12 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[11][31][0]  | rst_IBUF         |               14 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[14][31][0]  | rst_IBUF         |               20 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[17][31][0]  | rst_IBUF         |               13 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[22][31][0]  | rst_IBUF         |               13 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[13][31][0]  | rst_IBUF         |               11 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[4][31][0]   | rst_IBUF         |               12 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[27][31][0]  | rst_IBUF         |               10 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[9][31][0]   | rst_IBUF         |               25 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[2][31][0]   | rst_IBUF         |               13 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[6][31][0]   | rst_IBUF         |               16 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[3][31][0]   | rst_IBUF         |               13 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[28][31][0]  | rst_IBUF         |               16 |             32 |
-|  ff/xlnx_opt_                    | ifetch/E[0]                     | rst_IBUF         |               19 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[29][31][0]  | rst_IBUF         |               20 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[7][31][0]   | rst_IBUF         |               24 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[8][31][0]   | rst_IBUF         |               19 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[30][31][0]  | rst_IBUF         |               21 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[31][31][0]  | rst_IBUF         |               19 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[15][31][0]  | rst_IBUF         |               17 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[21][31][0]  | rst_IBUF         |               14 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[24][31][0]  | rst_IBUF         |               16 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[26][31][0]  | rst_IBUF         |                9 |             32 |
-|  ff/xlnx_opt_                    | ifetch/register_reg[5][31][0]   | rst_IBUF         |               12 |             32 |
-+----------------------------------+---------------------------------+------------------+------------------+----------------+
++-------------------------------+--------------------------------+-----------------------+------------------+----------------+
+|          Clock Signal         |          Enable Signal         |    Set/Reset Signal   | Slice Load Count | Bel Load Count |
++-------------------------------+--------------------------------+-----------------------+------------------+----------------+
+|  clock_IBUF_BUFG              |                                | rst_IBUF              |                1 |              2 |
+|  ff/xlnx_opt_                 |                                |                       |                1 |              2 |
+| ~ff/xlnx_opt_                 |                                |                       |                2 |              3 |
+|  kb/key_clk                   | kb/row_val[3]_i_2_n_0          | kb/row_val[3]_i_1_n_0 |                1 |              4 |
+|  kb/key_clk                   | kb/col_val[3]_i_1_n_0          |                       |                1 |              4 |
+|  kb/key_clk                   | kb/keybd_i_low0                |                       |                2 |              4 |
+| ~ff/xlnx_opt_                 | ifetch/PC[31]_i_1_n_0          | rst_IBUF              |                1 |              4 |
+|  kb/next_state_reg[5]_i_2_n_0 |                                |                       |                2 |              6 |
+| ~ff/xlnx_opt_                 | ifetch/switchrdata_reg[0][0]   | rst_IBUF              |                3 |              7 |
+|  kb/key_clk                   | kb/col[3]_i_1_n_0              |                       |                3 |              8 |
+|  ff/xlnx_opt_                 | ifetch/ledout_reg[23]_8[1]     | rst_IBUF              |                3 |              8 |
+|  kb/key_clk                   |                                |                       |                4 |             11 |
+|  ff/xlnx_opt_                 | ifetch/ledout_reg[23]_8[0]     | rst_IBUF              |                5 |             16 |
+|  clock_IBUF_BUFG              |                                |                       |                5 |             20 |
+| ~ff/xlnx_opt_                 |                                | rst_IBUF              |                9 |             26 |
+| ~ff/xlnx_opt_                 | ifetch/link_addr[29]_i_1_n_0   |                       |                8 |             30 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[11][31][0] | rst_IBUF              |                8 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[14][31][0] | rst_IBUF              |               16 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[23][31][0] | rst_IBUF              |               21 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[20][31][0] | rst_IBUF              |                8 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[16][31][0] | rst_IBUF              |               11 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[18][31][0] | rst_IBUF              |               12 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[22][31][0] | rst_IBUF              |               15 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[15][31][0] | rst_IBUF              |               17 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[25][31][0] | rst_IBUF              |               14 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[12][31][0] | rst_IBUF              |                8 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[21][31][0] | rst_IBUF              |               11 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[13][31][0] | rst_IBUF              |               14 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[17][31][0] | rst_IBUF              |                7 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[19][31][0] | rst_IBUF              |               10 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[24][31][0] | rst_IBUF              |                8 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[26][31][0] | rst_IBUF              |               13 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[5][31][0]  | rst_IBUF              |               12 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[7][31][0]  | rst_IBUF              |               21 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[30][31][0] | rst_IBUF              |               16 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[9][31][0]  | rst_IBUF              |               24 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[28][31][0] | rst_IBUF              |               18 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[2][31][0]  | rst_IBUF              |               11 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[31][31][0] | rst_IBUF              |               25 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[3][31][0]  | rst_IBUF              |               13 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[27][31][0] | rst_IBUF              |               13 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[29][31][0] | rst_IBUF              |               14 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[6][31][0]  | rst_IBUF              |               18 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[8][31][0]  | rst_IBUF              |               21 |             32 |
+|  ff/xlnx_opt_                 | ifetch/E[0]                    | rst_IBUF              |               14 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[1][31][0]  | rst_IBUF              |               11 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[10][31][0] | rst_IBUF              |               13 |             32 |
+|  ff/xlnx_opt_                 | ifetch/register_reg[4][31][0]  | rst_IBUF              |               16 |             32 |
++-------------------------------+--------------------------------+-----------------------+------------------+----------------+
 
 
 +--------+-----------------------+
@@ -98,9 +104,12 @@ Table of Contents
 +--------+-----------------------+
 | 2      |                     2 |
 | 3      |                     1 |
-| 4      |                     1 |
-| 8      |                     1 |
-| 16+    |                    37 |
+| 4      |                     4 |
+| 6      |                     1 |
+| 7      |                     1 |
+| 8      |                     2 |
+| 11     |                     1 |
+| 16+    |                    36 |
 +--------+-----------------------+
 
 
