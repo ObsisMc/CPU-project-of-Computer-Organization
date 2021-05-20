@@ -75,8 +75,8 @@ set rc [catch {
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES XPM_MEMORY [current_project]
   add_files -quiet E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.runs/synth_1/cpu.dcp
-  read_ip -quiet E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/ip/prgrom/prgrom.xci
   read_ip -quiet E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/ip/RAM/RAM.xci
+  read_ip -quiet E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/ip/prgrom/prgrom.xci
   read_xdc E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/constrs_1/new/CPU_con.xdc
   link_design -top cpu -part xc7a100tfgg484-1
   close_msg_db -file init_design.pb

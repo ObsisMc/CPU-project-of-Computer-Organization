@@ -20,13 +20,15 @@ module SwitchIO(switclk, switrst, switchread, switchcs,switchaddr, switchrdata, 
         begin
             if(keybd_i[19] == 1)
             begin
-                in <= keybd_i;
+                if(keybd_i[23:21] == 3'b000)
+                    in<={keybd_i[23:16], 16'h0000};
+                else
+                    in <= keybd_i;
             end
             else
             begin
                 in <= switch_i;
             end
-            //  in <= keybd_i;
         end
     end
 

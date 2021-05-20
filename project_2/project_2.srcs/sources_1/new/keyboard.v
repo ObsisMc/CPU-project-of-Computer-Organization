@@ -27,7 +27,7 @@ module keyboard(input clk,
                 output wire[23:0] keybd_i,    //the same as swtich_iin switch module
                 output reg key_pressed_flag); //show if keybd is being pressed
 
-     //select which scene to show, the same as swtich_i[23:16] in switch module but should be concat with keybd_i_low, modeCtrl[3]=1 means use keybd
+      //select which scene to show, the same as swtich_i[23:16] in switch module but should be concat with keybd_i_low, modeCtrl[3]=1 means use keybd
     reg [7:0] modeCtrl;   
     reg[15:0] keybd_i_low;   // the same as swtich_i[15:0] in switch module but should be concat with modeCtrl
     
@@ -185,6 +185,7 @@ module keyboard(input clk,
                         begin
                             modeCtrl <= 8'b0000_0000;
                         end
+                        keybd_i_low <= 0;
                     end
                     8'b1110_1101:
                     begin
@@ -252,7 +253,7 @@ module keyboard(input clk,
             else
             begin
                 // keyboard_val = 2'b00;
-                keybd_i_low <= 0;
+                // keybd_i_low <= 0;
             end
     assign keybd_i = {modeCtrl,keybd_i_low};
 endmodule
