@@ -193,7 +193,8 @@ module cpu(input clock,
     // .switchctrl(SwitchCtrl),
     // .ioread_data(iodata),   //output
     // .ioread_data_switch(switchrdata));
-    
+
+    wire[23:0] keybd_i;    
     LedIO ledoutput(
     .led_clk(clk),
     .ledrst(rst),
@@ -201,10 +202,11 @@ module cpu(input clock,
     .ledcs(LEDCtrl),
     .ledaddr(addr_out[1:0]), //??????????????  from memorio?????
     .ledwdata(write_data[15:0]),    //from memio(id_rdata)??
-    .ledout(led[23:0])
+    .ledout(led[23:0]),
+    .mod(keybd_i[23:16]),
+    .keybd_i(keybd_i)
     );
 
-    wire[23:0] keybd_i;
     wire key_pressed_flag;  //not used
     keyboard kb(
         .clk(clock),

@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 
-module LedIO(led_clk, ledrst, ledwrite, ledcs, ledaddr,ledwdata, ledout);
+module LedIO(led_clk, ledrst, ledwrite, ledcs, ledaddr,ledwdata, ledout, mod, keybd_i);
     input led_clk;    		    // 时钟信号
     input ledrst; 		        // 复位信号
     input ledwrite;		       	// 写信号(from controller?)
@@ -9,6 +9,8 @@ module LedIO(led_clk, ledrst, ledwrite, ledcs, ledaddr,ledwdata, ledout);
     input[1:0] ledaddr;	        //  到LED模块的地址低端  !!!!!!!!!!!!!!!!!!!!
     input[15:0] ledwdata;	  	//  写到LED模块的数据，注意数据线只有16根
     output[23:0] ledout;		//  向板子上输出的24位LED信号
+    input[7:0] mod;
+    input[23:0] keybd_i;
   
     reg [23:0] ledout;
     
@@ -23,6 +25,15 @@ module LedIO(led_clk, ledrst, ledwrite, ledcs, ledaddr,ledwdata, ledout);
 				ledout[23:0] <= { ledwdata[7:0], ledout[15:0] };
 			else
 				ledout <= ledout;
+        end
+        else if(mod == 8'b0010_1000)
+        begin
+            ledout[23:0] <= keybd_i;
+        end
+        
+        if(mod[3] == 1)
+        begin
+            ledout[23:16] <= mod;
         end
 		else begin
             ledout <= ledout;
