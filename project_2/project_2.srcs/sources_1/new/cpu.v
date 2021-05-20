@@ -165,6 +165,8 @@ module cpu(input clock,
     //input
     wire[15:0] iodata;
     wire[15:0] switchrdata; //data from switchio
+    assign iodata = switchrdata;
+    
     //output of memorio
     wire LEDCtrl; // LED Chip Select
     wire SwitchCtrl; // Switch Chip Select
@@ -186,11 +188,11 @@ module cpu(input clock,
     .SwitchCtrl(SwitchCtrl)
     );
 
-    ioInterface ioin(.reset(rst),
-    .ior(IORead),
-    .switchctrl(SwitchCtrl),
-    .ioread_data(iodata),   //output
-    .ioread_data_switch(switchrdata));
+    // ioInterface ioin(.reset(rst),
+    // .ior(IORead),
+    // .switchctrl(SwitchCtrl),
+    // .ioread_data(iodata),   //output
+    // .ioread_data_switch(switchrdata));
     
     LedIO ledoutput(
     .led_clk(clk),
