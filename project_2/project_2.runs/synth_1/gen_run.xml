@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tfgg484-1" LaunchTime="1621595474">
+<GenRun Id="synth_1" LaunchPart="xc7a100tfgg484-1" LaunchTime="1621613710">
   <File Type="PA-TCL" Name="cpu.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="cpu_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="cpu_reports.tcl"/>
@@ -182,6 +182,12 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/imports/Chrome Download/prgmip32_scene1.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/Chrome Download/prgmip32_keyboardscene.coe">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
