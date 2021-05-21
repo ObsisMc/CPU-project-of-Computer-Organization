@@ -36,11 +36,12 @@ input upg_rst_i, // UPG reset (Active High)
     );
     wire clk;
     assign clk = !clock;
+    wire kickOff = upg_rst_i | (~upg_rst_i & upg_done_i);
     RAM ram(
-    .clka(clk),
-    .wea(Memwrite),
-    .addra(address[15:2]),
-    .dina(write_data),
+    .clka(kickOff ?clk : upg_clk_i),
+    .wea(kickOff ? Memwrite : upg_wen_i),
+    .addra(kickOff ? address[15:2] : upg_adr_i),
+    .dina(kickOff ? write_data: upg_dat_i),
     .douta(read_data)
     );
 endmodule
