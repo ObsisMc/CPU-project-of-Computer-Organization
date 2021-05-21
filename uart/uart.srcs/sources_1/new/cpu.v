@@ -30,7 +30,8 @@ module cpu(input clock,
 // UART Programmer Pinouts 
 wire reset;
 wire upg_clk, upg_clk_o; 
- clkout2 change(clock,upg_clk);
+ clkout2 change(clock,rst,upg_clk);
+
 wire upg_wen_o; //Uart write out enable 
 wire upg_done_o; //Uart rx data have done //data to which memory unit of program_rom/dmemory32
  wire [14:0] upg_adr_o; //data to program_rom or dmemory32 
@@ -42,7 +43,7 @@ wire upg_done_o; //Uart rx data have done //data to which memory unit of program
     .reset(rst),
     .clkout(clk));
     reg upg_rst;
-     always @ (posedge clock) 
+     always @ (posedge clk) 
      begin 
      if (spg_bufg) 
      upg_rst = 0; 
@@ -70,7 +71,7 @@ wire upg_done_o; //Uart rx data have done //data to which memory unit of program
     
     Ifetc32 ifetch(
     .clock(clk),
-    .reset(rst),
+    .reset(  rst),
     .Addr_result(Addr_result),
     .Read_data_1(Read_data_1),
     .Branch(Branch),
@@ -83,7 +84,7 @@ wire upg_done_o; //Uart rx data have done //data to which memory unit of program
     .Instruction(Instruction),          //output
     .branch_base_addr(branch_base_addr),    //output
     .link_addr(link_addr) ,  //output
-    .upg_rst_i(reset),
+    .upg_rst_i(upg_rst),
     . upg_clk_i(upg_clk_o),
     . upg_wen_i(upg_wen_o& (!upg_adr_o[14])),
     . upg_adr_i(upg_adr_o[13:0]),
@@ -110,7 +111,7 @@ wire upg_done_o; //Uart rx data have done //data to which memory unit of program
     .MemtoReg(MemtoReg),
     .RegDst(RegDst),
     .clock(clk),
-    .reset(rst),
+    .reset(  rst),
     .opcplus4(link_addr),
     .read_data_1(read_data_1),  //output
     .read_data_2(read_data_2),  //output
@@ -187,7 +188,7 @@ wire upg_done_o; //Uart rx data have done //data to which memory unit of program
     .address(addr_out),
     .write_data(write_data),
     .read_data(read_data)   //output: to memroio
-    ,.upg_clk_i(upg_clk_o),.upg_wen_i(upg_wen_o& upg_adr_o[14]),.upg_rst_i(reset),
+    ,.upg_clk_i(upg_clk_o),.upg_wen_i(upg_wen_o& upg_adr_o[14]),.upg_rst_i(upg_rst),
     .upg_adr_i(upg_adr_o[13:0]),
     .upg_dat_i(upg_done_o)
     );
@@ -216,7 +217,7 @@ wire upg_done_o; //Uart rx data have done //data to which memory unit of program
     .SwitchCtrl(SwitchCtrl)
     );
 
-    ioInterface ioin(.reset(rst),
+    ioInterface ioin(.reset(  rst),
     .ior(IORead),
     .switchctrl(SwitchCtrl),
     .ioread_data(iodata),
@@ -224,7 +225,7 @@ wire upg_done_o; //Uart rx data have done //data to which memory unit of program
     
     LedIO ledoutput(
     .led_clk(clk),
-    .ledrst(rst),
+    .ledrst(   rst),
     .ledwrite(IOWrite),   //from controller(IOWrite)?????
     .ledcs(LEDCtrl),
     .ledaddr(addr_out[1:0]), //??????????????  from memorio?????
@@ -234,7 +235,7 @@ wire upg_done_o; //Uart rx data have done //data to which memory unit of program
 
     SwitchIO switchinput(
         .switclk(clk),
-        .switrst(rst),
+        .switrst(  rst),
         .switchcs(SwitchCtrl),
         .switchaddr(addr_out[1:0]), //?????????????????
         .switchread(IORead),  //from controller(IORead)?????
