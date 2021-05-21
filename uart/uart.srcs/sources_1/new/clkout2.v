@@ -25,19 +25,21 @@ input clk,
 input reset,
 output reg clkout
     );
-    reg [3:0] cnt;
-    always@(posedge clk , posedge reset)
+    reg [3:0] cnt=0;
+    always@(posedge clk or posedge reset)
     begin
     if(reset)
       begin
     cnt=0;
      clkout=0;
           end
-       else if(cnt==10)
+       else if(cnt<4)
        begin
-       cnt<=0;
-       clkout<=~clkout;
+      cnt=cnt+1;
        end
-       else cnt=cnt+1;
+       else begin
+        cnt<=0;
+        clkout<=~clkout;
+        end
     end
 endmodule
