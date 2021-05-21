@@ -227,7 +227,7 @@ module cpu(input clock,
     
     
     reg [19:0] cnt;
-    always @ (posedge clk, posedge rst)
+    always @ (posedge clock, posedge rst)
         if (rst)
             cnt <= 0;
         else

@@ -2,8 +2,8 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Fri May 21 11:11:43 2021
-# Process ID: 21624
+# Start of session at: Fri May 21 14:39:33 2021
+# Process ID: 8124
 # Current directory: E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.runs/prgrom_synth_1
 # Command line: vivado.exe -log prgrom.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source prgrom.tcl
 # Log file: E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.runs/prgrom_synth_1/prgrom.vds
