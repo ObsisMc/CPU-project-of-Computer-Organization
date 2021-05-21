@@ -2,80 +2,27 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Fri May 21 17:36:53 2021
-# Process ID: 3228
+# Start of session at: Fri May 21 18:59:58 2021
+# Process ID: 22788
 # Current directory: E:/Gitrepo/CPU-project-of-Computer-Organization/project_2
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent6572 E:\Gitrepo\CPU-project-of-Computer-Organization\project_2\project_2.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10252 E:\Gitrepo\CPU-project-of-Computer-Organization\project_2\project_2.xpr
 # Log file: E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/vivado.log
 # Journal file: E:/Gitrepo/CPU-project-of-Computer-Organization/project_2\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.xpr
-open_hw
 update_compile_order -fileset sources_1
-connect_hw_server
-open_hw_target
-set_property PROGRAM.FILE {E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.runs/impl_1/cpu.bit} [get_hw_devices xc7a100t_0]
-current_hw_device [get_hw_devices xc7a100t_0]
-refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a100t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property PROGRAM.FILE {E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.runs/impl_1/cpu.bit} [get_hw_devices xc7a100t_0]
-program_hw_devices [get_hw_devices xc7a100t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
-reset_run synth_1
+set_property -dict [list CONFIG.Coe_File {E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/imports/Chrome Download/prgmip32_scene1.coe}] [get_ips prgrom]
+generate_target all [get_files  E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/ip/prgrom/prgrom.xci]
+catch { config_ip_cache -export [get_ips -all prgrom] }
+export_ip_user_files -of_objects [get_files E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/ip/prgrom/prgrom.xci] -no_script -sync -force -quiet
 reset_run prgrom_synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 8
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property PROGRAM.FILE {E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.runs/impl_1/cpu.bit} [get_hw_devices xc7a100t_0]
-program_hw_devices [get_hw_devices xc7a100t_0]
-set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property PROGRAM.FILE {E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.runs/impl_1/cpu.bit} [get_hw_devices xc7a100t_0]
-program_hw_devices [get_hw_devices xc7a100t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 8
-wait_on_run impl_1
-disconnect_hw_server localhost:3121
-connect_hw_server
-disconnect_hw_server localhost:3121
-connect_hw_server
-open_hw_target
-set_property PROGRAM.FILE {E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.runs/impl_1/cpu.bit} [get_hw_devices xc7a100t_0]
-current_hw_device [get_hw_devices xc7a100t_0]
-refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a100t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property PROGRAM.FILE {E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.runs/impl_1/cpu.bit} [get_hw_devices xc7a100t_0]
-program_hw_devices [get_hw_devices xc7a100t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property PROGRAM.FILE {E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.runs/impl_1/cpu.bit} [get_hw_devices xc7a100t_0]
-program_hw_devices [get_hw_devices xc7a100t_0]
-set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property PROGRAM.FILE {E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.runs/impl_1/cpu.bit} [get_hw_devices xc7a100t_0]
-program_hw_devices [get_hw_devices xc7a100t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
-close_hw
+launch_runs -jobs 8 prgrom_synth_1
+export_simulation -of_objects [get_files E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/ip/prgrom/prgrom.xci] -directory E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.ip_user_files/sim_scripts -ip_user_files_dir E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.ip_user_files -ipstatic_source_dir E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.cache/compile_simlib/modelsim} {questa=E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.cache/compile_simlib/questa} {riviera=E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.cache/compile_simlib/riviera} {activehdl=E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
 reset_run synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 8
 wait_on_run impl_1
 open_hw
-connect_hw_server
-disconnect_hw_server localhost:3121
-connect_hw_server
-disconnect_hw_server localhost:3121
-connect_hw_server
-disconnect_hw_server localhost:3121
-connect_hw_server
-disconnect_hw_server localhost:3121
-connect_hw_server
-disconnect_hw_server localhost:3121
 connect_hw_server
 open_hw_target
 set_property PROGRAM.FILE {E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.runs/impl_1/cpu.bit} [get_hw_devices xc7a100t_0]

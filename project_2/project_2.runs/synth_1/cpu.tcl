@@ -16,7 +16,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7a100tfgg484-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -41,6 +40,7 @@ add_files {{E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.
 add_files {{E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/imports/Chrome Download/prgmip32_keybd_main12.coe}}
 add_files {{E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/imports/Chrome Download/prgmip32_fullscene1_key.coe}}
 add_files {{E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/imports/Chrome Download/prgmip32_withoutlatency.coe}}
+add_files {{e:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/imports/Chrome Download/prgmip32_scene1.coe}}
 read_verilog -library xil_defaultlib {
   E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/Executs32.v
   E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/FracFrequency.v
