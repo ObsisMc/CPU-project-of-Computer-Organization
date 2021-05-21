@@ -40,7 +40,8 @@ add_files {{E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.
 add_files {{E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/imports/Chrome Download/prgmip32_keybd_main12.coe}}
 add_files {{E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/imports/Chrome Download/prgmip32_fullscene1_key.coe}}
 add_files {{E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/imports/Chrome Download/prgmip32_withoutlatency.coe}}
-add_files {{e:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/imports/Chrome Download/prgmip32_scene1.coe}}
+add_files {{E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/imports/Chrome Download/prgmip32_scene1.coe}}
+add_files {{e:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/imports/Chrome Download/prgmip32_keyboardscene.coe}}
 read_verilog -library xil_defaultlib {
   E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/Executs32.v
   E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/new/FracFrequency.v
