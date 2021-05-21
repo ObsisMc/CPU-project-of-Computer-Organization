@@ -22,8 +22,10 @@
 
 module cpu(input clock,
            input rst,
+           input [3:0] row,
            input[23:0] switch,
-           output[23:0] led);
+           output[23:0] led,
+           output reg[3:0] col);
 
     wire clk;
     FracFrequency ff(.clk(clock),
@@ -163,6 +165,8 @@ module cpu(input clock,
     //input
     wire[15:0] iodata;
     wire[15:0] switchrdata; //data from switchio
+    assign iodata = switchrdata;
+    
     //output of memorio
     wire LEDCtrl; // LED Chip Select
     wire SwitchCtrl; // Switch Chip Select
@@ -179,17 +183,18 @@ module cpu(input clock,
     .r_rdata(read_data_2), // data read from idecode32(register file)(read_data_2)!!!!!!!!!?
     .addr_out(addr_out),    //output and follows are they
     .r_wdata(r_wdata),
-    .write_data(write_data),    //io_wdata
+    .write_data(write_data),    //io_wdata, output
     .LEDCtrl(LEDCtrl),
     .SwitchCtrl(SwitchCtrl)
     );
 
-    ioInterface ioin(.reset(rst),
-    .ior(IORead),
-    .switchctrl(SwitchCtrl),
-    .ioread_data(iodata),
-    .ioread_data_switch(switchrdata));
-    
+    // ioInterface ioin(.reset(rst),
+    // .ior(IORead),
+    // .switchctrl(SwitchCtrl),
+    // .ioread_data(iodata),   //output
+    // .ioread_data_switch(switchrdata));
+
+    wire[23:0] keybd_i;    
     LedIO ledoutput(
     .led_clk(clk),
     .ledrst(rst),
@@ -197,7 +202,9 @@ module cpu(input clock,
     .ledcs(LEDCtrl),
     .ledaddr(addr_out[1:0]), //??????????????  from memorio?????
     .ledwdata(write_data[15:0]),    //from memio(id_rdata)??
-    .ledout(led[23:0])
+    .ledout(led[23:0]),
+    .mod(keybd_i[23:16]),
+    .keybd_i(keybd_i)
     );
 
     SwitchIO switchinput(
@@ -206,8 +213,243 @@ module cpu(input clock,
         .switchcs(SwitchCtrl),
         .switchaddr(addr_out[1:0]), //?????????????????
         .switchread(IORead),  //from controller(IORead)?????
-        .switchrdata(switchrdata),
-        .switch_i(switch[23:0])
+        .switchrdata(switchrdata), //output
+        .switch_i(switch[23:0]),
+        .keybd_i(keybd_i)
     );
+
+// 只能对初始值操作
+//----------------------------------keyboard------------------------------------------------------------
+    reg key_pressed_flag;  //not used
+     //select which scene to show, the same as swtich_i[23:16] in switch module but should be concat with keybd_i_low, modeCtrl[3]=1 means use keybd
+    reg [7:0] modeCtrl;   
+    reg[15:0] keybd_i_low;   // the same as swtich_i[15:0] in switch module but should be concat with modeCtrl
+    
+    
+    reg [19:0] cnt;
+    always @ (posedge clock, posedge rst)
+        if (rst)
+            cnt <= 0;
+        else
+            cnt <= cnt + 1'b1;
+    
+    wire key_clk = cnt[19];                // (2^20/50M = 21)ms
+    
+    parameter NO_KEY_PRESSED = 6'b000_001;
+    parameter SCAN_COL0      = 6'b000_010;
+    parameter SCAN_COL1      = 6'b000_100;
+    parameter SCAN_COL2      = 6'b001_000;
+    parameter SCAN_COL3      = 6'b010_000;
+    parameter KEY_PRESSED    = 6'b100_000;
+    
+    reg [5:0] current_state, next_state;
+    
+    always @ (posedge key_clk, posedge rst)
+        if (rst)
+            current_state <= NO_KEY_PRESSED;
+        else
+            current_state <= next_state;
+    
+    
+    always @ *
+    case (current_state)
+        NO_KEY_PRESSED :
+        begin
+            if (row != 4'hF)
+                next_state = SCAN_COL0;
+            else
+                next_state = NO_KEY_PRESSED;
+        end
+        SCAN_COL0 :
+        begin
+            if (row != 4'hF)
+                next_state = KEY_PRESSED;
+            else
+                next_state = SCAN_COL1;
+        end
+        SCAN_COL1 :
+        begin
+            if (row != 4'hF)
+                next_state = KEY_PRESSED;
+            else
+                next_state = SCAN_COL2;
+        end
+        SCAN_COL2 :
+        begin
+            if (row != 4'hF)
+                next_state = KEY_PRESSED;
+            else
+                next_state = SCAN_COL3;
+        end
+        SCAN_COL3 :
+        begin
+            if (row != 4'hF)
+                next_state = KEY_PRESSED;
+            else
+                next_state = NO_KEY_PRESSED;
+        end
+        KEY_PRESSED :
+        begin
+            if (row != 4'hF)
+                next_state = KEY_PRESSED;
+            else
+                next_state = NO_KEY_PRESSED;
+        end
+    endcase
+    
+    
+    reg [3:0] col_val, row_val;
+    always @ (posedge key_clk, posedge rst)
+        if (rst)
+        begin
+            col              <= 4'h0;
+            key_pressed_flag <= 0;
+        end
+        else
+            case (next_state)
+                NO_KEY_PRESSED :
+                begin
+                    col              <= 4'h0;
+                    row_val          <= 4'hf;
+                    key_pressed_flag <= 0;
+                end
+                SCAN_COL0 :
+                begin
+                    col     <= 4'b1110;
+                    row_val <= 4'hf;
+                end
+                SCAN_COL1 :
+                begin
+                    col     <= 4'b1101;
+                    row_val <= 4'hf;
+                end
+                SCAN_COL2 :
+                begin
+                    col     <= 4'b1011;
+                    row_val <= 4'hf;
+                end
+                SCAN_COL3 :
+                begin
+                    col     <= 4'b0111;
+                    row_val <= 4'hf;
+                end
+                KEY_PRESSED :
+                begin
+                    col_val          <= col;
+                    row_val          <= row;
+                    key_pressed_flag <= 1;
+                end
+            endcase
+    
+    
+    // reg [3:0] keyboard_val;     //键盘
+    always @ (posedge key_clk, posedge rst)
+        if (rst)
+        begin
+            // keyboard_val = 2'b0;
+            keybd_i_low <= 0;
+            modeCtrl <= 0;
+        end
+        else
+            if (key_pressed_flag)
+            begin
+                case ({col_val, row_val})
+                    8'b1110_1110 :
+                    begin
+                        // keyboard_val = 1;
+                        keybd_i_low <= 1;
+                    end
+                    8'b1101_1110 :
+                    begin
+                        // keyboard_val = 2;
+                        keybd_i_low <= 2;
+                    end
+                    8'b1011_1110 :
+                    begin
+                        // keyboard_val = 3;
+                        keybd_i_low <= 3;
+                    end
+                    8'b0111_1110:
+                    begin
+                        if(modeCtrl[3] == 0)
+                        begin
+                            modeCtrl <= 8'b0000_1000;
+                        end
+                        else
+                        begin
+                            modeCtrl <= 8'b0000_0000;
+                        end
+                        keybd_i_low <= 0;
+                    end
+                    8'b1110_1101:
+                    begin
+                        // keyboard_val = 4;
+                        keybd_i_low <= 4;
+                    end
+                    8'b1101_1101:
+                    begin
+                        // keyboard_val = 5;
+                        keybd_i_low <= 5;
+                    end
+                    8'b1011_1101:
+                    begin
+                        // keyboard_val = 6;
+                        keybd_i_low <= 6;
+                    end
+                    8'b0111_1101:
+                    begin
+                        modeCtrl[7:5] <= 3'b001;
+                        keybd_i_low <= 0;
+                    end
+                    8'b1110_1011:
+                    begin
+                        // keyboard_val = 7;
+                        keybd_i_low <= 7;
+                    end
+                    8'b1101_1011:
+                    begin
+                        // keyboard_val = 8;
+                        keybd_i_low <= 8;
+                    end
+                    8'b1011_1011:
+                    begin
+                        // keyboard_val = 9;
+                        keybd_i_low <= 9;
+                    end
+                    8'b0111_1011:
+                    begin
+                        modeCtrl[7:5] <= 3'b010;
+                    end
+                    8'b1110_0111:
+                    begin
+                        modeCtrl[7:5] <=3'b100;
+                    end
+                    8'b1101_0111 :
+                    begin
+                        // keyboard_val = 0;
+                        keybd_i_low <= 0;
+                    end
+                    8'b1011_0111:
+                    begin
+                        modeCtrl[7:5] <=3'b101;
+                    end
+                    8'b0111_0111:
+                    begin
+                        modeCtrl[7:5] <=3'b011;
+                    end
+                    default:
+                    begin
+                        // keyboard_val = 0;
+                        keybd_i_low <= 0;
+                    end
+                endcase
+            end
+            else
+            begin
+                // keyboard_val = 2'b00;
+                // keybd_i_low <= 0;
+            end
+    assign keybd_i = {modeCtrl,keybd_i_low};
+
 endmodule
     

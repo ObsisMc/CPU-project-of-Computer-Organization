@@ -2,7 +2,8 @@
 module FracFrequency(input clk,
                input reset,
                output reg clkout);
-    reg [1:0] cnt;
+    reg [31:0] cnt;
+    parameter fq = 5000000;
     always @(posedge clk,posedge reset)
     begin
         if (reset)
@@ -10,7 +11,7 @@ module FracFrequency(input clk,
             cnt     <= 0;
             clkout <= 0;
         end
-        else if (cnt == 1'b1)
+        else if (cnt == (fq>>1)-1)
         begin
             cnt <= 0;
             clkout <= ~clkout;
