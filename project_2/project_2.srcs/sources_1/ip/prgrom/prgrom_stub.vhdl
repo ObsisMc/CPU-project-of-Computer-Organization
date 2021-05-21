@@ -1,7 +1,7 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
--- Date        : Fri May 21 00:58:57 2021
+-- Date        : Fri May 21 11:16:13 2021
 -- Host        : DESKTOP-413QC96 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               E:/Gitrepo/CPU-project-of-Computer-Organization/project_2/project_2.srcs/sources_1/ip/prgrom/prgrom_stub.vhdl
