@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2021/05/16 10:50:33
+// Create Date: 2020/12/23 08:54:22
 // Design Name: 
-// Module Name: CPU_tb
+// Module Name: top
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,24 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module CPU_tb();
-reg clk;
-reg rst;
-reg[23:0] switch;
-wire[23:0] led;
-wire [3:0] col;
-//wire [7:0] seg_en;
-//wire [7:0] seg_out;
-cpu tt(clk,rst,switch,led,col);
-
-always #1 clk = ~clk;
-initial begin
-clk = 1'b0;
-rst = 1'b1;
-switch = 0;
-#1 rst = 1'b0;
-repeat(5000000)
-#10 switch = switch+1;
-#10 $finish;
-end
+module top(
+input clk,
+input rst,
+input[15:0] ledwdata,
+output [7:0] seg_en,
+output [7:0] seg_out
+    );
+    wire clk_out;
+    clkout co(clk,rst,clk_out);
+    show ss(clk_out,rst,seg_en,seg_out,ledwdata);
 endmodule

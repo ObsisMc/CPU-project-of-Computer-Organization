@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2021/05/16 10:50:33
+// Create Date: 2020/12/23 08:54:48
 // Design Name: 
-// Module Name: CPU_tb
+// Module Name: clkout
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,24 +20,26 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module CPU_tb();
-reg clk;
-reg rst;
-reg[23:0] switch;
-wire[23:0] led;
-wire [3:0] col;
-//wire [7:0] seg_en;
-//wire [7:0] seg_out;
-cpu tt(clk,rst,switch,led,col);
+module clkout(
+input clk,
+inout rst,
+output reg clk_out
+    );
+    reg [31:0]cnt;
+    parameter period = 200000;
+    always@(posedge clk,negedge rst)
+    begin
+    if(rst)
+    begin
+        cnt<=0;
+    end
+    else if(cnt==(period>>1)-1) 
+    begin
+    cnt<=0;
+    clk_out<=~clk_out;
+    end
+    else
+    cnt<=cnt+1;
 
-always #1 clk = ~clk;
-initial begin
-clk = 1'b0;
-rst = 1'b1;
-switch = 0;
-#1 rst = 1'b0;
-repeat(5000000)
-#10 switch = switch+1;
-#10 $finish;
-end
+    end
 endmodule

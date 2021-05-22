@@ -25,7 +25,10 @@ module cpu(input clock,
            input [3:0] row,
            input[23:0] switch,
            output[23:0] led,
-           output reg[3:0] col);
+           output reg[3:0] col,
+           output [7:0] seg_en,
+           output [7:0] seg_out
+           );
 
     wire clk;
     FracFrequency ff(.clk(clock),
@@ -217,8 +220,32 @@ module cpu(input clock,
         .switch_i(switch[23:0]),
         .keybd_i(keybd_i)
     );
+    
+//    top S_SEG_TUBE(
+//    .clk(clock),
+//    .rst(rst),
+//    .ledwdata(led[15:0]),
+//    .seg_en(seg_en),
+//    .seg_out(seg_out)
+//    );
 
-// 只能对初始值操作
+    wire clock_out;
+    
+    clkout co(
+    .clk(clock),
+    .rst(rst),
+    .clk_out(clock_out)
+    );
+
+    show S_SEG_TUBE(
+    .clk(clock_out),
+    .rst(rst),
+    .ledwdata(led[16:0]),
+    .seg_en(seg_en),
+    .seg_out(seg_out)
+    );
+
+// 只能对初始�?�操�?
 //----------------------------------keyboard------------------------------------------------------------
     reg key_pressed_flag;  //not used
      //select which scene to show, the same as swtich_i[23:16] in switch module but should be concat with keybd_i_low, modeCtrl[3]=1 means use keybd
